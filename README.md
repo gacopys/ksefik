@@ -17,6 +17,7 @@ Przeglądaj, wystawiaj i wysyłaj faktury FA(3) do KSeF 2.0 - szybko, z klawiatu
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Textual](https://img.shields.io/badge/UI-Textual-8a2be2)](https://textual.textualize.io/)
+<br>
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-donate-yellow.svg)](https://buymeacoffee.com/gacopys)
 [![PayPal](https://img.shields.io/badge/PayPal-donate-blue.svg)](https://paypal.me/gacopys)
 
