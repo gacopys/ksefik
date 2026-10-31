@@ -10,7 +10,7 @@ Przeglądaj, wystawiaj i wysyłaj faktury FA(3) do KSeF 2.0 - szybko, z klawiatu
 [![Pokrycie kodu](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/gacopys/ksefik/python-coverage-comment-action-data/endpoint.json)](https://htmlpreview.github.io/?https://github.com/gacopys/ksefik/blob/python-coverage-comment-action-data/htmlcov/index.html)
 [![CodeQL](https://github.com/gacopys/ksefik/actions/workflows/codeql.yml/badge.svg)](https://github.com/gacopys/ksefik/actions/workflows/codeql.yml)
 <br>
-[![PyPI](https://img.shields.io/pypi/v/ksefik?color=blue)](https://pypi.org/project/ksefik/)
+[![PyPI](https://img.shields.io/pypi/v/ksefik?label=PyPI&color=blue)](https://pypi.org/project/ksefik/)
 [![Python](https://img.shields.io/badge/python-3.12%20%7C%203.13%20%7C%203.14-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![KSeF 2.0](https://img.shields.io/badge/KSeF-2.0%20%C2%B7%20FA(3)-d4213d)](https://ksef.podatki.gov.pl/)
 [![Licencja MIT](https://img.shields.io/badge/licencja-MIT-green)](LICENSE)
