@@ -51,7 +51,7 @@ def load_token(env: str, nip: str) -> str | None:
         try:
             if token := kr.get_password(SERVICE, _account(env, nip)):
                 return token
-        except Exception:
+        except Exception:  # pęk kluczy zablokowany lub uszkodzony - token może być jeszcze w pliku
             pass
     path = token_file(env, nip)
     if path.exists():
@@ -65,7 +65,7 @@ def save_token(env: str, nip: str, token: str) -> str:
         try:
             kr.set_password(SERVICE, _account(env, nip), token)
             return "systemowy pęk kluczy"
-        except Exception:
+        except Exception:  # pęk kluczy niedostępny - zapis do pliku z prawami 0600 poniżej
             pass
     path = token_file(env, nip)
     path.parent.mkdir(parents=True, exist_ok=True)

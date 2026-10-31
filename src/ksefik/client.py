@@ -112,8 +112,13 @@ class EnrollmentRejected(KsefError):
 class StillProcessing(KsefError):
     """Faktura wysłana, ale KSeF nie skończył jej przetwarzać w czasie oczekiwania."""
 
-    def __init__(self, session_ref: str, invoice_ref: str) -> None:
-        super().__init__("KSeF wciąż przetwarza fakturę. Status sprawdzisz później w aplikacji.")
+    def __init__(
+        self,
+        session_ref: str,
+        invoice_ref: str,
+        message: str = "KSeF wciąż przetwarza fakturę. Status sprawdzisz później w aplikacji.",
+    ) -> None:
+        super().__init__(message)
         self.session_ref = session_ref
         self.invoice_ref = invoice_ref
 
@@ -122,9 +127,11 @@ class OutcomeUnknown(StillProcessing):
     """Połączenie zerwane w trakcie wysyłania faktury: KSeF mógł ją otrzymać, ale nie znamy jej numeru."""
 
     def __init__(self, session_ref: str) -> None:
-        super().__init__(session_ref, "")
-        self.message = "Połączenie z KSeF zostało przerwane w trakcie wysyłki. Wynik sprawdzisz później w aplikacji."
-        self.args = (self.message,)
+        super().__init__(
+            session_ref,
+            "",
+            "Połączenie z KSeF zostało przerwane w trakcie wysyłki. Wynik sprawdzisz później w aplikacji.",
+        )
 
 
 def find_session_invoice(
