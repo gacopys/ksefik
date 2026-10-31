@@ -23,8 +23,8 @@ jobs:
     name: Lint i formatowanie
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
         with:
           version: "0.13.5"
           enable-cache: true
@@ -41,8 +41,8 @@ jobs:
     env:
       UV_PYTHON: ${{ matrix.python }}
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
         with:
           version: "0.13.5"
           enable-cache: true
@@ -56,8 +56,8 @@ jobs:
       contents: write # odznaka pokrycia na gałęzi python-coverage-comment-action-data
       pull-requests: write # komentarz z pokryciem w PR
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
         with:
           version: "0.13.5"
           enable-cache: true
@@ -71,12 +71,12 @@ jobs:
           MINIMUM_GREEN: 90
           MINIMUM_ORANGE: 80
       - name: Komentarz dla PR z forka (publikuje go coverage-comment.yml)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: steps.coverage_comment.outputs.COMMENT_FILE_WRITTEN == 'true'
         with:
           name: python-coverage-comment-action
           path: python-coverage-comment-action.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: htmlcov
@@ -87,8 +87,8 @@ jobs:
     name: Paczka (wheel + sdist)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
         with:
           version: "0.13.5"
           enable-cache: true
@@ -101,7 +101,7 @@ jobs:
           uv pip install --python /tmp/smoke dist/*.whl
           /tmp/smoke/bin/ksefik --version
           /tmp/smoke/bin/ksefik --help
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist/
