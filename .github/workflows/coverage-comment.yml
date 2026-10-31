@@ -1,0 +1,22 @@
+# Publikuje komentarz z pokryciem w PR otwartych z forków (tam token w CI ma tylko prawo odczytu).
+name: Komentarz z pokryciem
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+jobs:
+  comment:
+    name: Komentarz z pokryciem
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
+    permissions:
+      pull-requests: write
+      contents: write
+      actions: read
+    steps:
+      - uses: py-cov-action/python-coverage-comment-action@v3
+        with:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_PR_RUN_ID: ${{ github.event.workflow_run.id }}

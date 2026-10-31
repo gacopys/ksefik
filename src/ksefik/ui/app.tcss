@@ -1,0 +1,716 @@
+/* ---------------------------------------------------------------- wspólne */
+
+#topbar {
+    height: 1;
+    padding: 0 1;
+    background: $panel;
+}
+
+#who {
+    width: 1fr;
+}
+
+#connection {
+    width: auto;
+    padding: 0 1;
+    margin-right: 1;
+}
+
+#connection.connection-online {
+    color: $text-success;
+}
+
+#connection.connection-local {
+    color: $text-muted;
+}
+
+#connection.connection-login {
+    color: $text-warning;
+    text-style: bold;
+}
+
+#env-badge {
+    width: auto;
+    padding: 0 1;
+    text-style: bold;
+    background: $primary;
+    color: $text;
+}
+
+#env-badge.env-test, #env-badge.env-demo {
+    background: $warning;
+    color: $background;
+}
+
+.notice {
+    height: auto;
+    padding: 0 1;
+    margin: 1 1 0 1;
+    border: round $warning;
+}
+
+.notice.error {
+    border: round $error;
+}
+
+.dialog {
+    width: 76;
+    max-width: 100%;
+    height: auto;
+    border: round $primary;
+    padding: 1 2;
+    background: $surface;
+}
+
+.dialog-title {
+    color: $text-accent;
+    margin-bottom: 1;
+}
+
+.dialog-text {
+    margin-bottom: 1;
+}
+
+.field-label {
+    color: $text-muted;
+}
+
+.dialog-buttons {
+    height: auto;
+    align-horizontal: right;
+    margin-top: 1;
+}
+
+.dialog-buttons Button {
+    margin-left: 1;
+}
+
+/* ------------------------------------------------------------ lista faktur */
+
+#direction-tabs {
+    margin: 0 1;
+}
+
+#filters {
+    height: auto;
+    padding: 1 2 0 2;
+}
+
+#search-row {
+    height: 1;
+    margin: 0 0 1 0;
+}
+
+#search {
+    width: 1fr;
+}
+
+#actions {
+    width: auto;
+    margin-left: 1;
+}
+
+#filter-row {
+    height: 1;
+}
+
+.filter-label {
+    width: auto;
+    height: 1;
+    margin: 0 1 0 2;
+    color: $text-muted;
+}
+
+#filter-row .first {
+    margin: 0 1 0 0;
+}
+
+#period {
+    width: 24;
+}
+
+#date-from, #date-to {
+    width: 11;
+}
+
+#counterparty {
+    width: 1fr;
+    min-width: 16;
+}
+
+MainScreen.-narrow #counterparty-label {
+    display: none;
+}
+
+MainScreen.-narrow #period {
+    width: 18;
+}
+
+#invoices {
+    height: 1fr;
+    margin: 0 1;
+}
+
+#empty {
+    height: 1fr;
+    content-align: center middle;
+    text-align: center;
+}
+
+#status-bar {
+    height: 1;
+    padding: 0 1;
+    background: $panel;
+}
+
+#status {
+    width: 1fr;
+    height: 1;
+}
+
+#sync-status {
+    width: auto;
+    height: 1;
+    margin-left: 2;
+}
+
+#filter-error {
+    display: none;
+    height: auto;
+    margin-top: 1;
+}
+
+MainScreen.-narrow #period-label {
+    display: none;
+}
+
+/* ---------------------------------------------------------- dokument faktury */
+
+InvoiceDocument {
+    height: 1fr;
+    padding: 0 1;
+}
+
+.doc-head {
+    height: auto;
+    margin-top: 1;
+    padding: 0 1;
+}
+
+.doc-kind {
+    width: 1fr;
+}
+
+.doc-number {
+    width: auto;
+    text-align: right;
+}
+
+.doc-parties {
+    height: auto;
+}
+
+.card {
+    height: auto;
+    border: round $primary 60%;
+    border-title-color: $text-accent;
+    padding: 0 1;
+    margin-top: 1;
+}
+
+.party {
+    width: 1fr;
+    margin: 1 0 0 0;
+}
+
+.party.right {
+    margin: 1 0 0 1;
+}
+
+.doc-table {
+    height: auto;
+    background: transparent;
+    border: round $primary 60%;
+    border-title-color: $text-accent;
+    margin: 1 0 0 0;
+}
+
+.doc-table.plain {
+    border: none;
+    margin: 0;
+}
+
+.to-pay {
+    text-align: right;
+    padding: 0 1 0 0;
+}
+
+/* ------------------------------------------------------------ nowa faktura */
+
+QuickInvoiceScreen, TokenScreen, PasswordScreen, FormScreen, ConfirmScreen, ChoiceScreen, LineScreen,
+TokenCreatedScreen {
+    align: center middle;
+}
+
+#amount-dialog {
+    width: 84;
+}
+
+.quick-row {
+    height: 1;
+    margin-bottom: 1;
+}
+
+.quick-label {
+    width: 12;
+    color: $text-muted;
+}
+
+.quick-row Select {
+    width: 1fr;
+}
+
+#amount {
+    margin-bottom: 1;
+}
+
+#summary-buttons {
+    height: auto;
+    padding: 1 1 0 1;
+    align-horizontal: center;
+}
+
+#summary-buttons Button {
+    margin: 0 1;
+}
+
+#form {
+    padding: 0 2;
+}
+
+#form-grid {
+    height: auto;
+    grid-size: 1;
+    grid-rows: auto;
+    grid-gutter: 0 2;
+}
+
+EditScreen.-wide #form-grid {
+    grid-size: 2;
+}
+
+EditScreen.-wide .wide-section {
+    column-span: 2;
+}
+
+#lines {
+    height: auto;
+    max-height: 14;
+    background: transparent;
+}
+
+.lines-buttons {
+    height: 1;
+    margin: 1 0;
+}
+
+.lines-buttons Button {
+    margin-right: 1;
+}
+
+.lines-hint {
+    width: 1fr;
+    margin-left: 1;
+}
+
+.section-note {
+    margin-bottom: 1;
+}
+
+.id-input {
+    margin-left: 1;
+}
+
+.form-row Checkbox {
+    width: auto;
+    margin-right: 2;
+}
+
+.form-section {
+    height: auto;
+    border: round $primary 60%;
+    border-title-color: $text-accent;
+    padding: 1 2 0 2;
+    margin-top: 1;
+}
+
+.form-row {
+    height: 1;
+    margin-bottom: 1;
+}
+
+.form-label {
+    width: 22;
+    color: $text-muted;
+}
+
+.form-row Input {
+    width: 1fr;
+    max-width: 60;
+}
+
+.form-row Select {
+    width: 1fr;
+    max-width: 44;
+}
+
+#buyer_id_type {
+    max-width: 22;
+}
+
+/* NIP ma 10 cyfr - krótkie pole, a „Pobierz dane” tuż obok niego, nie na końcu wiersza. */
+#buyer_id.-nip {
+    width: 18;
+}
+
+#buyer_lookup {
+    margin-left: 1;
+}
+
+.form-hint {
+    width: auto;
+    margin-left: 2;
+}
+
+#totals {
+    height: auto;
+    margin: 0 0 1 22;
+}
+
+#form-buttons {
+    height: auto;
+    padding: 1 2;
+}
+
+#form-buttons Button {
+    margin-right: 1;
+}
+
+#draft-state {
+    width: 1fr;
+    height: 3;
+    content-align: left middle;
+    padding: 0 1;
+}
+
+/* ---------------------------------------------------------------- wysyłka */
+
+SendScreen Center {
+    height: 1fr;
+    align-vertical: middle;
+}
+
+#send-box {
+    width: 92;
+    max-height: 100%;
+}
+
+#send-body {
+    height: auto;
+    max-height: 60vh;
+}
+
+#steps {
+    margin: 0 0 1 0;
+}
+
+#result {
+    height: auto;
+}
+
+#setup-box {
+    width: 84;
+}
+
+.token-row {
+    height: auto;
+}
+
+.token-row Input {
+    width: 1fr;
+}
+
+.token-row Checkbox {
+    width: auto;
+    margin: 1 0 0 1;
+}
+
+#setup-status {
+    height: auto;
+    margin-top: 1;
+}
+
+/* --------------------------------------------------------------- formularze */
+
+/* Okna dialogowe przewijają się w całości; tytuł, błąd i przyciski są przypięte do krawędzi okna. */
+.form-dialog, .confirm-dialog, .line-dialog, #setup-box {
+    max-height: 100%;
+}
+
+.form-dialog > .dialog-title, .line-dialog > .dialog-title, .confirm-dialog > .dialog-title {
+    dock: top;
+}
+
+.dialog-footer {
+    dock: bottom;
+    height: auto;
+}
+
+/* Linia oddziela przypięty błąd i przyciski od przewijanych pól - błąd nie wygląda jak opis pola nad nim. */
+.form-dialog > .dialog-footer {
+    border-top: solid $foreground 20%;
+}
+
+.form-dialog {
+    width: 76;
+}
+
+.form-dialog.wide {
+    width: 96;
+}
+
+.form-field {
+    height: auto;
+    margin-bottom: 1;
+    padding-right: 1;
+}
+
+.form-field Select, .form-field Input {
+    width: 100%;
+}
+
+.form-field SelectionList {
+    height: auto;
+    max-height: 10;
+}
+
+.form-area {
+    height: 6;
+}
+
+.form-field-hint {
+    height: auto;
+}
+
+.field-with-action {
+    height: auto;
+}
+
+/* Pole z przyciskiem to krótki identyfikator (NIP) - przycisk stoi tuż obok, nie na końcu okna. */
+.form-field .field-with-action Input {
+    width: 18;
+}
+
+.field-action {
+    margin-left: 1;
+}
+
+#form-error {
+    height: auto;
+}
+
+.confirm-dialog {
+    width: 64;
+}
+
+.choice-dialog {
+    width: 80;
+    max-height: 100%;
+}
+
+#choices {
+    height: auto;
+    border: none;
+}
+
+.line-dialog {
+    width: 90;
+}
+
+.line-dialog .form-row Input {
+    max-width: 60;
+}
+
+#line-preview {
+    margin: 0 0 1 22;
+}
+
+.secret-dialog {
+    width: 90;
+}
+
+/* Pomoc przewija listę skrótów, a tytuł i przycisk zostają na miejscu. */
+.help-dialog {
+    max-height: 100%;
+}
+
+.help-dialog > .dialog-title {
+    dock: top;
+}
+
+#secret-value {
+    padding: 1 2;
+    margin-bottom: 1;
+    background: $boost;
+    text-style: bold;
+}
+
+/* ------------------------------------------------------------ listy KSeF */
+
+.screen-description {
+    height: auto;
+    padding: 0 2;
+    margin: 1 0 0 0;
+    color: $text;
+}
+
+.list-filters {
+    height: 1;
+    margin: 1 2 0 2;
+}
+
+.list-filters Select {
+    width: 56;
+}
+
+#list {
+    height: 1fr;
+    margin: 1 1 0 1;
+}
+
+#list-empty {
+    height: 1fr;
+    content-align: center middle;
+    text-align: center;
+    padding: 0 4;
+}
+
+#list-details {
+    height: auto;
+    min-height: 2;
+    padding: 0 2;
+    background: $panel;
+}
+
+#op-status {
+    display: none;
+    height: auto;
+    padding: 0 2;
+}
+
+#sections, #operations {
+    height: 1fr;
+    margin: 1 2;
+    border: none;
+}
+
+#limits {
+    padding: 0 2;
+}
+
+/* --------------------------------------------------------------- import XML */
+
+#import-row {
+    height: 1;
+    margin: 1 2 0 2;
+}
+
+#import-path {
+    width: 1fr;
+    margin-right: 1;
+}
+
+#import-options {
+    height: 1;
+    margin: 1 2 0 2;
+}
+
+#import-options Select {
+    width: 32;
+    margin-right: 2;
+}
+
+#table-title {
+    height: auto;
+    margin: 1 2 0 2;
+}
+
+#files {
+    height: 1fr;
+    margin: 0 1;
+}
+
+#file-details {
+    height: auto;
+    max-height: 4;
+    padding: 0 2;
+    background: $panel;
+}
+
+#import-status {
+    height: auto;
+    padding: 0 2;
+}
+
+#import-buttons {
+    height: auto;
+    padding: 1 2 0 2;
+}
+
+#import-buttons Button {
+    margin-right: 2;
+}
+
+ImportScreen.-short .screen-description {
+    display: none;
+}
+
+ImportScreen.-short #import-buttons {
+    padding: 0 2;
+}
+
+/* Pola w oknach dialogowych: kompaktowe, ale z wyraźnym tłem (inaczej puste pole zlewa się z oknem).
+   $boost bywa w motywach całkiem przezroczysty, dlatego jaśniejsza powierzchnia. */
+.dialog Input {
+    background: $surface-lighten-1;
+}
+
+.dialog Input:focus {
+    background: $primary 25%;
+}
+
+/* Zbyt małe okno terminala */
+TooSmallScreen {
+    align: center middle;
+    background: $background;
+}
+
+#too-small {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 0 1;
+}
+
+/* Zwijane grupy rzadziej używanych pól (oznaczenia faktury, kody pozycji) */
+.form-section Collapsible, .line-dialog Collapsible {
+    border: none;
+    padding: 0;
+    margin: 0 0 1 0;
+    background: transparent;
+}
+
+.form-section Collapsible > Contents, .line-dialog Collapsible > Contents {
+    padding: 1 0 0 0;
+}

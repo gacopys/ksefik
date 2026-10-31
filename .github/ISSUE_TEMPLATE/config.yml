@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Pytanie o KSeF (przepisy, Aplikacja Podatnika, awarie)
+    url: https://ksef.podatki.gov.pl/
+    about: Pytania o sam KSeF kieruj do Ministerstwa Finansów.
+  - name: Zgłoś lukę bezpieczeństwa
+    url: https://github.com/gacopys/ksefik/security/advisories/new
+    about: Prywatnie - nie w publicznym zgłoszeniu.

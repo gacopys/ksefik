@@ -1,0 +1,40 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+dist/
+build/
+*.egg-info/
+
+# Narzędzia
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.json
+coverage.xml
+reports/
+integration-logs/
+htmlcov/
+.uv-cache/
+
+# IDE
+.idea/
+.vscode/
+
+# Dane lokalne i sekrety - nigdy do repo
+profile.toml
+config.toml
+*.pem
+*.p12
+*.pfx
+*.db
+*.db-journal
+.env
+token-*
+
+# Faktury (dokumenty z prawdziwymi danymi)
+*.pdf
+
+# GitHub Actions
+python-coverage-comment-action.txt

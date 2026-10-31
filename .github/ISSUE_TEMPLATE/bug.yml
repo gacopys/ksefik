@@ -1,0 +1,49 @@
+name: Błąd
+description: Coś działa inaczej, niż powinno
+labels: ["błąd"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dzięki za zgłoszenie! **Nie wklejaj tokenów, kluczy ani prawdziwych danych z faktur.**
+        Lukę bezpieczeństwa zgłoś prywatnie: https://github.com/gacopys/ksefik/security/advisories/new
+  - type: textarea
+    id: what
+    attributes:
+      label: Co się stało?
+      description: Co robiłeś, czego się spodziewałeś i co zobaczyłeś zamiast tego.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Jak to odtworzyć?
+      placeholder: |
+        1. Na liście faktur naciśnij n
+        2. ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Wersja ksefik
+      description: Wynik `ksefik --version`
+    validations:
+      required: true
+  - type: dropdown
+    id: env
+    attributes:
+      label: Środowisko KSeF
+      options: ["test", "demo", "prod", "nie dotyczy"]
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: System i terminal
+      placeholder: "np. Ubuntu 24.04, GNOME Terminal, Python 3.12"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Komunikat błędu lub zrzut ekranu
+      description: Usuń z niego NIP-y, numery KSeF i inne dane, jeśli są prawdziwe.

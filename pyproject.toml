@@ -1,0 +1,76 @@
+[project]
+name = "ksefik"
+version = "0.2.0"
+description = "KSeF 2.0 w terminalu: faktury wystawione i otrzymane, wystawianie FA(3), korekty, tokeny, uprawnienia, certyfikaty"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Paweł Borkowski", email = "gacopys@gmail.com" }
+]
+requires-python = ">=3.12"
+keywords = ["ksef", "e-faktura", "faktura", "fa3", "tui", "textual", "vat", "invoice", "poland"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console :: Curses",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Natural Language :: Polish",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Office/Business :: Financial :: Accounting",
+    "Typing :: Typed",
+]
+dependencies = [
+    "cryptography>=50.0.2",
+    "httpx>=0.28.1",
+    "keyring>=25.7.0",
+    "lxml>=6.1.3",
+    "textual>=8.2.8",
+]
+
+[project.urls]
+Homepage = "https://github.com/gacopys/ksefik"
+Repository = "https://github.com/gacopys/ksefik"
+Issues = "https://github.com/gacopys/ksefik/issues"
+Changelog = "https://github.com/gacopys/ksefik/blob/main/CHANGELOG.md"
+
+[project.scripts]
+ksefik = "ksefik:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "pytest-xdist>=3.8.0",
+    "ruff>=0.17.2",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "B", "I", "UP", "C4", "SIM", "RUF100"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-markers"]
+
+[tool.coverage.run]
+source = ["ksefik"]
+branch = true
+relative_files = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

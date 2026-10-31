@@ -1,0 +1,19 @@
+name: Pomysł
+description: Zaproponuj nową funkcję albo usprawnienie
+labels: ["pomysł"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Jaki problem to rozwiąże?
+      description: Opisz sytuację z codziennej pracy z fakturami, w której tego brakuje.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Jak to mogłoby działać?
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Jak radzisz sobie teraz?

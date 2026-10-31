@@ -1,0 +1,189 @@
+# Przykładowy profil ksefik - opis wszystkich ustawień (dane są fikcyjne).
+#
+# Aplikacja szuka profilu w ~/.config/ksefik/profile.toml. Inny plik wskażesz przez
+# `ksefik --profile ścieżka.toml` albo zmienną KSEFIK_PROFILE - np. osobny profil dla każdej firmy.
+# Przy pierwszym uruchomieniu bez profilu aplikacja przeprowadzi przez krótki kreator.
+# Pola oznaczone jako opcjonalne można pominąć.
+
+# Środowisko KSeF: "prod" (produkcja), "demo" (przedprodukcyjne) albo "test" (testowe).
+# Można je nadpisać przy uruchomieniu: ksefik --env test
+srodowisko = "prod"
+
+# Od jakiej daty pobrać faktury przy pierwszej synchronizacji (RRRR-MM-DD).
+synchronizuj_od = "2026-02-01"
+
+# Które faktury pobierać z KSeF:
+#   "wystawione"  - Twoja firma jest sprzedawcą (Podmiot1),
+#   "otrzymane"   - Twoja firma jest nabywcą (Podmiot2),
+#   "podmiot3"    - Twoja firma jest na fakturze podmiotem trzecim (np. płatnikiem, odbiorcą, faktorem),
+#   "upowaznione" - Twoja firma jest podmiotem upoważnionym (np. organem egzekucyjnym).
+synchronizuj = ["wystawione", "otrzymane"]
+
+# Motyw kolorów Textual (zmienisz też w palecie poleceń: Ctrl+P).
+motyw = "textual-dark"
+
+
+[logowanie]
+# "token"      - token KSeF; aplikacja zapyta o niego przy pierwszym uruchomieniu i zapisze w systemowym
+#                pęku kluczy. Token wygenerujesz w Aplikacji Podatnika KSeF albo w ksefik (Konto KSeF → Tokeny).
+# "certyfikat" - podpis XAdES: certyfikat KSeF, kwalifikowana pieczęć firmy albo podpis kwalifikowany
+#                w plikach PEM/DER (certyfikat + klucz) lub w jednym pliku .p12/.pfx.
+metoda = "token"
+
+# Dla metody "certyfikat" (opcjonalne dla tokena):
+# certyfikat = "~/.config/ksefik/certyfikaty/laptop.pem"
+# klucz = "~/.config/ksefik/certyfikaty/laptop.klucz.pem"
+# Hasło do klucza nie jest zapisywane - aplikacja zapyta o nie przy starcie (albo ustaw KSEF_KEY_PASSWORD).
+# Jak KSeF ma rozpoznać osobę logującą się certyfikatem:
+#   "podmiot" - po NIP/PESEL z certyfikatu (domyślnie), "odcisk" - po odcisku palca certyfikatu.
+# identyfikacja = "podmiot"
+# Sprawdzanie łańcucha i statusu (OCSP/CRL) certyfikatu przy logowaniu na środowisku testowym.
+# weryfikuj_certyfikat = false
+
+# Kontekst logowania - w czyim imieniu pracujesz. Domyślnie NIP sprzedawcy z sekcji [sprzedawca].
+#   "nip"           - NIP firmy,
+#   "id_wewnetrzny" - identyfikator wewnętrzny jednostki (NIP-5 cyfr, np. 1234567890-00011),
+#   "nip_vat_ue"    - kontekst NIP-VAT UE (samofakturowanie przez podmiot z UE),
+#   "peppol"        - identyfikator dostawcy usług Peppol.
+# kontekst = "nip"
+# identyfikator = ""
+
+# Ograniczenie sesji do wskazanych adresów IP (pojedyncze adresy, zakresy "a-b" albo maski CIDR).
+# dozwolone_ip = ["203.0.113.10", "198.51.100.1-198.51.100.20", "10.0.0.0/8"]
+
+
+[sprzedawca]
+nazwa = "Pracownia Przykładowa Jan Kowalski"
+nip = "5438539502"
+adres_l1 = "ul. Przykładowa 1 lok. 2"
+adres_l2 = "00-001 Warszawa"
+kraj = "PL"
+# Opcjonalnie - pokazywane na fakturze:
+email = "faktury@example.com"
+# telefon = "+48 600 000 000"
+# Numery w rejestrach (stopka faktury):
+# krs = "0000000000"
+regon = "123456785"
+# bdo = "000000000"
+
+
+# Rachunki bankowe. Na nową fakturę trafia pierwszy rachunek w walucie faktury (pole `waluta`),
+# a gdy takiego nie ma - pierwszy rachunek bez waluty. W edycji faktury możesz wybrać inny.
+[[rachunki]]
+numer = "61 1090 1014 0000 0712 1981 2874"
+bank = "Santander Bank Polska"
+
+[[rachunki]]
+numer = "PL27 1140 2004 0000 3002 0135 5387"
+waluta = "EUR"
+swift = "BREXPLPW"
+opis = "rachunek walutowy"
+
+
+[faktura]
+# Numeracja: {nr} - kolejny numer, {nr:3} - z zerami (001), {m} / {mm} - miesiąc (9 / 09),
+# {rrrr} / {rr} - rok (2026 / 26). Licznik liczy od 1 w każdym miesiącu, jeśli wzór zawiera miesiąc,
+# w każdym roku, jeśli zawiera tylko rok, a bez daty - bez końca. Przykłady:
+#   "FV/{nr}/{mm}/{rrrr}" -> FV/1/09/2026      "{nr}/{m}/{rrrr}" -> 1/9/2026
+#   "FV/{rrrr}/{nr:4}"   -> FV/2026/0001       "{nr}" -> 1, 2, 3…
+numeracja = "FV/{nr}/{mm}/{rrrr}"
+# Numeracja faktur korygujących (osobna seria).
+numeracja_korekt = "KOR/{nr}/{mm}/{rrrr}"
+
+# Daty nowej faktury:
+#   "dzisiaj"            - wystawienie i wykonanie usługi: dzisiaj,
+#   "koniec_miesiaca"    - obie daty: ostatni dzień miesiąca, którego dotyczy faktura,
+#   "dzisiaj_za_miesiac" - wystawienie dzisiaj, wykonanie: ostatni dzień miesiąca, którego dotyczy.
+daty = "dzisiaj"
+# Do tego dnia miesiąca (włącznie) faktura dotyczy poprzedniego miesiąca; 0 - zawsze bieżącego.
+# Ma znaczenie dla "koniec_miesiaca" i "dzisiaj_za_miesiac".
+dzien_graniczny = 0
+
+termin_platnosci_dni = 14
+# gotowka | karta | bon | czek | kredyt | przelew | mobilna
+forma_platnosci = "przelew"
+# Domyślna waluta (kod ISO 4217). Dla faktur w walucie obcej podasz kurs w edycji faktury.
+waluta = "PLN"
+# Mechanizm podzielonej płatności - zaznaczany na każdej nowej fakturze. Niezależnie od tego aplikacja
+# zaznaczy go sama, gdy faktura powyżej 15 000 zł zawiera pozycje z załącznika nr 15 (pozycje z zal15 = true).
+mpp = false
+# Metoda kasowa (art. 21 ustawy o VAT).
+metoda_kasowa = false
+# Opcjonalnie:
+# miejsce_wystawienia = "Warszawa"
+# Podstawa prawna zwolnienia dla pozycji ze stawką "zw" (np. zwolnienie podmiotowe):
+# podstawa_zwolnienia = "art. 113 ust. 1 ustawy o VAT"
+# Procedura marży dla pozycji ze stawką "marza": turystyka | towary_uzywane | dziela_sztuki | antyki
+# procedura_marzy = "towary_uzywane"
+stopka = "Dziękujemy za terminową płatność."
+
+
+# Katalog pozycji (towarów i usług). Pozycja z domyslna = true trafia na nową fakturę.
+# stawka_vat: "23", "8", "5", "0 KR" (0% w kraju), "0 WDT", "0 EX" (eksport), "zw" (zwolnione),
+#   "np I" (niepodlegające - poza krajem), "np II" (usługi dla podatnika z UE, art. 100 ust. 1 pkt 4),
+#   "oo" (odwrotne obciążenie), "marza", historyczne "22", "7" oraz ryczałt taxi "4", "3".
+# Opcjonalnie: cena_netto, gtu (GTU_01…GTU_13), pkwiu, cn, indeks (kod wewnętrzny), zal15 (załącznik nr 15).
+[[pozycje]]
+nazwa = "Usługi programistyczne"
+jednostka = "usł."
+stawka_vat = "23"
+domyslna = true
+
+[[pozycje]]
+nazwa = "Konsultacje"
+jednostka = "godz."
+stawka_vat = "23"
+cena_netto = "250,00"
+gtu = "GTU_12"
+
+[[pozycje]]
+nazwa = "Software development services"
+jednostka = "usł."
+stawka_vat = "np II"
+
+
+# Kontrahenci (nabywcy). Kontrahent z domyslny = true jest podpowiadany przy nowej fakturze.
+# Identyfikacja nabywcy - jedno z pól:
+#   nip = "…"                 - polski NIP,
+#   vat_ue = "DE123456789"    - numer VAT UE z prefiksem kraju,
+#   nr_id = "…" + kraj = "US" - inny identyfikator podatkowy,
+#   brak_id = true            - osoba prywatna albo podmiot bez identyfikatora.
+# Opcjonalnie: email, telefon, nr_klienta, termin_platnosci_dni (zamiast domyślnego), pozycja (domyślna
+# pozycja z katalogu), waluta, jst (jednostka podrzędna JST), gv (członek grupy VAT), powiazany (znacznik TP).
+# Nowych kontrahentów zapiszesz też z edycji faktury (Ctrl+T).
+[[kontrahenci]]
+nazwa = "Przykładowa Spółka z o.o."
+nip = "7163454949"
+adres_l1 = "ul. Złota 1"
+adres_l2 = "00-019 Warszawa"
+email = "ksiegowosc@example.com"
+domyslny = true
+
+[[kontrahenci]]
+nazwa = "Beispiel GmbH"
+vat_ue = "DE123456789"
+adres_l1 = "Hauptstraße 1"
+adres_l2 = "10115 Berlin"
+kraj = "DE"
+waluta = "EUR"
+termin_platnosci_dni = 30
+pozycja = "Software development services"
+
+# Podmioty trzecie na fakturach dla kontrahenta - np. odbiorca dla jednostki samorządu (JST).
+# rola: 1 faktor, 2 odbiorca, 3 podmiot pierwotny, 4 dodatkowy nabywca, 5 wystawca faktury,
+# 6 dokonujący płatności, 7 JST - wystawca, 8 JST - odbiorca, 9/10 członek grupy VAT, 11 pracownik;
+# albo opis_roli = "…" dla innej roli. Dla dodatkowego nabywcy: udzial = "50" (procent).
+[[kontrahenci]]
+nazwa = "Gmina Przykładowo"
+nip = "6096027968"
+adres_l1 = "ul. Rynek 1"
+adres_l2 = "00-950 Przykładowo"
+# Faktura dotyczy jednostki podrzędnej JST - wtedy KSeF wymaga podmiotu trzeciego z rolą 8 (odbiorca).
+jst = true
+
+[[kontrahenci.podmioty3]]
+nazwa = "Szkoła Podstawowa nr 1 w Przykładowie"
+nip = "3404396454"
+adres_l1 = "ul. Szkolna 1"
+adres_l2 = "00-950 Przykładowo"
+rola = 8
