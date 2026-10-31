@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
         with:
           version: "0.13.5"
           enable-cache: true
@@ -40,7 +40,7 @@ jobs:
         env:
           ARGS: ${{ inputs.args }}
         run: make run-integration-test ARGS="--junitxml=reports/integration.xml $ARGS"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: integration-logs
