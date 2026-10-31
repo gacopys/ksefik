@@ -75,7 +75,7 @@ def test_keyring_backend_detection(monkeypatch):
     from keyring.backends.fail import Keyring
 
     monkeypatch.undo()
-    monkeypatch.setattr(keyring, "get_keyring", lambda: Keyring())
+    monkeypatch.setattr(keyring, "get_keyring", Keyring)
     assert tokenstore._keyring() is None
     monkeypatch.setattr(keyring, "get_keyring", Mock(side_effect=RuntimeError("unavailable")))
     assert tokenstore._keyring() is None

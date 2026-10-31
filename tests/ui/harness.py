@@ -128,7 +128,7 @@ class HarnessApp(KsefApp):
         super().__init__(*args, **kwargs)
         self.start_flow = start
 
-    def on_mount(self, event) -> None:
+    def on_mount(self, event=None) -> None:
         # Textual wywołuje on_mount każdej klasy w MRO - bez prevent_default ruszyłby normalny start aplikacji.
         if not self.start_flow:
             event.prevent_default()

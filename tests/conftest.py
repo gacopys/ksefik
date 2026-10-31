@@ -73,7 +73,7 @@ def ui(profile, tmp_path, monkeypatch):
     class Harness(KsefApp):
         CSS_PATH = ROOT / "src/ksefik/ui/app.tcss"
 
-        def on_mount(self, event):
+        def on_mount(self, event=None):
             # Textual wywołuje on_mount każdej klasy w MRO - bez prevent_default ruszyłby normalny start (logowanie).
             event.prevent_default()
             self.theme = self.profile.theme
