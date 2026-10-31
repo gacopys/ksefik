@@ -13,6 +13,8 @@ permissions:
 jobs:
   analyze:
     name: Analiza bezpieczeństwa
+    # Skanowanie kodu GitHub działa w repozytoriach publicznych; w prywatnym wymaga GitHub Advanced Security.
+    if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
