@@ -7,5 +7,3 @@ innym miejscu związanym z projektem.
 W skrócie: bądź życzliwy i cierpliwy, szanuj różne punkty widzenia i poziomy doświadczenia, krytykuj pomysły,
 a nie ludzi. Nękanie, obraźliwe komentarze i publikowanie cudzych danych (także danych z faktur) są
 niedopuszczalne.
-
-Naruszenia zgłaszaj opiekunowi projektu: gacopys@gmail.com. Każde zgłoszenie zostanie rozpatrzone poufnie.
