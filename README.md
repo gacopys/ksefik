@@ -272,4 +272,4 @@ na środowisku testowym KSeF.
 
 ## Licencja
 
-[MIT](LICENSE) © Paweł Borkowski
+[MIT](LICENSE) 
